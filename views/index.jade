@@ -27,14 +27,10 @@ block content
                 dt Low:
                 dd#low
         .col-md-5
-          h2 City List
-          #cityList
-            table
-              thead
-                th#tableCityName
-                th Humidity
-                th Delete?
-              tbody
+          h2 Comments
+          #comments
+            ul#comments
+              li.comment A comment
           textarea.form-control(rows="2")
           button.btn.btn-primary Post
   .container
@@ -84,7 +80,7 @@ block content
                 $('#low').text(data.main.temp_min);
 
                 // Clear city weather input value
-                $cityName.val('');
+                $('#cityName').val('');
 
                 // Display weather condition info reported from API JSON
                 var weatherCondition = data.weather[0].main
@@ -126,8 +122,4 @@ block content
           });
            socket.emit('send city name', { name: $cityName });
          });
-
-         socket.on('new message', function(data) {
-            console.log(data);
-          });
       });
