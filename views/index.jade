@@ -28,11 +28,11 @@ block content
                 dd#low
         .col-md-5
           h2 Comments
-          #comments
-            ul#comments
+          form#comment-form
+            ul#comment-list
               li.comment A comment
-          textarea.form-control(rows="2")
-          button.btn.btn-primary Post
+            textarea.form-control#comment-box(rows="2")
+            button.btn.btn-primary(type="submit") Post
   .container
         //- fieldset
         //-   input#cityName(type='text', placeholder='City name')
@@ -47,6 +47,11 @@ block content
     script.
       $(function($) {
         var socket = io.connect();
+
+        var $commentForm = $('#comment-form');
+        var $commentBox = $('#comment-box');
+        var $commentList = $('#comment-list');
+
         // Initialize skycons
         var skycons = new Skycons({"color": "black"});
 
@@ -122,4 +127,14 @@ block content
           });
            socket.emit('send city name', { name: $cityName });
          });
+
+        $commentForm.submit(function(e) {
+          e.preventDefault;
+          socket.emit('create comment', $commentBox.val());
+          $commentBox.val('');
+        });
+
+        socket.on('new comment', function(data) {
+          $commentList.append("<li class='comment'>" + data + "</li>");
+        });
       });

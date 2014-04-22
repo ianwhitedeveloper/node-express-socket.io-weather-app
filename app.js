@@ -44,4 +44,8 @@ io.sockets.on('connection', function (socket) {
     socket.on('send city name', function(data) {
       io.sockets.emit('new city', data);
     });
+
+    socket.on('create comment', function(data) {
+    io.sockets.emit('new comment', data);
+  });
 });
