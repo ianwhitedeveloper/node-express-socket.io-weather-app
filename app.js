@@ -25,7 +25,13 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  mongoose.connect('mongodb://localhost/weather');
+  mongoose.connect('mongodb://localhost/weather', function(err) {
+    if(err){
+      console.log(err);
+    } else {
+      console.log('Connected to mongodb!');
+    }
+  });
 });
 
 app.get('/', routes.index);
