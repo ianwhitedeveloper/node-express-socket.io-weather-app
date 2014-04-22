@@ -54,10 +54,10 @@ block content
 
          var $weatherButton = $('#get-weather');
 
-         $weatherButton.on('click', function(e) {
-           e.preventDefault;
-           $cityName = $('#cityName').val();
-           $.ajax({
+        $weatherButton.on('click', function(e) {
+          e.preventDefault;
+          $cityName = $('#cityName').val();
+          $.ajax({
             url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + "&mode=json&units=imperial",
             type: "get",
             dataType: "json",
@@ -79,7 +79,7 @@ block content
                 $('#cityName').val('');
               }
             }
-            });
+          });
            socket.emit('send city name', { name: $cityName });
          });
 
