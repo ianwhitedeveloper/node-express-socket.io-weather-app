@@ -5,10 +5,12 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http');
+  , mongoose = require('mogoose');
 
 var app = express();
 var server = app.listen(3000);
 var io = require('socket.io').listen(server); // this tells socket.io to use our express server
+
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -23,6 +25,7 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
+  mongoose.connect('mongodb://localhost/weather');
 });
 
 app.get('/', routes.index);

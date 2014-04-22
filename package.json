@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.4.8",
     "jade": "*",
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "mongoose": "^3.8.8"
   }
 }
