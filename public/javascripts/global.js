@@ -27,20 +27,20 @@
     //     dataType: "json",
     //     success: function (data) {
     //       console.log(data.cod);
-//           // Only show results if what is typed in city name
-//           // input is valid
-//           if (data.cod === 200) {
-//             $('#cityNameBanner').text(cityName + " Weather");
-//             $('.container.main').fadeIn(200);
-//             // Update named fields with API weather data for specific city
-//             $('#humidity').text(data.main.humidity + "%");
-//             $('#pressure').text(data.main.pressure);
-//             $('#temperature').text(data.main.temp);
-//             $('#high').text(data.main.temp_max);
-//             $('#low').text(data.main.temp_min);
+    //       // Only show results if what is typed in city name
+    //       // input is valid
+    //       if (data.cod === 200) {
+    //         $('#cityNameBanner').text(cityName + " Weather");
+    //         $('.container.main').fadeIn(200);
+    //         // Update named fields with API weather data for specific city
+    //         $('#humidity').text(data.main.humidity + "%");
+    //         $('#pressure').text(data.main.pressure);
+    //         $('#temperature').text(data.main.temp);
+    //         $('#high').text(data.main.temp_max);
+    //         $('#low').text(data.main.temp_min);
 
-//             // Clear city weather input value
-//             $('#cityName').val('');
+    //         // Clear city weather input value
+    //         $('#cityName').val('');
 //             var weatherCondition = data.weather[0].main
 //             console.log(weatherCondition);
 

@@ -56,16 +56,31 @@ block content
 
          $weatherButton.on('click', function(e) {
            e.preventDefault;
-           $cityNameToSave = $('#cityName').val();
+           $cityName = $('#cityName').val();
            $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityNameToSave + "&mode=json&units=imperial",
+            url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + "&mode=json&units=imperial",
             type: "get",
             dataType: "json",
             success: function (data) {
-              console.log(data);
+              console.log(data.cod);
+              // Only show results if what is typed in city name
+              // input is valid
+              if (data.cod === 200) {
+                $('#cityNameBanner').text($cityName + " Weather");
+                $('.container.main').fadeIn(200);
+                // Update named fields with API weather data for specific city
+                $('#humidity').text(data.main.humidity + "%");
+                $('#pressure').text(data.main.pressure);
+                $('#temperature').text(data.main.temp);
+                $('#high').text(data.main.temp_max);
+                $('#low').text(data.main.temp_min);
+
+                // Clear city weather input value
+                $('#cityName').val('');
+              }
             }
-          });
-           socket.emit('send city name', { name: $cityNameToSave });
+            });
+           socket.emit('send city name', { name: $cityName });
          });
 
          socket.on('new message', function(data) {
