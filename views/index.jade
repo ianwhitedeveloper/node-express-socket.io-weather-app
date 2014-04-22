@@ -52,12 +52,20 @@ block content
       $(function($) {
         var socket = io.connect();
 
-         var $getWeatherButton = $('#get-weather');
+         var $weatherButton = $('#get-weather');
 
-         $getWeatherButton.on('click', function(e) {
+         $weatherButton.on('click', function(e) {
            e.preventDefault;
-           socket.emit('send city name', { name: $('#cityName').val() });
-           $grabCityName.val('');
+           $cityNameToSave = $('#cityName').val();
+           $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityNameToSave + "&mode=json&units=imperial",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+              console.log(data);
+            }
+          });
+           socket.emit('send city name', { name: $cityNameToSave });
          });
 
          socket.on('new message', function(data) {

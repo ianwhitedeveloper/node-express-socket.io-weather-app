@@ -21,12 +21,12 @@
 //     var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&mode=json&units=imperial";
 
 //     // Dynamically update a banner heading with name of city
-//     $.ajax({
-//         url: weatherUrl,
-//         type: "get",
-//         dataType: "json",
-//         success: function (data) {
-//           console.log(data.cod);
+    // $.ajax({
+    //     url: weatherUrl,
+    //     type: "get",
+    //     dataType: "json",
+    //     success: function (data) {
+    //       console.log(data.cod);
 //           // Only show results if what is typed in city name
 //           // input is valid
 //           if (data.cod === 200) {
