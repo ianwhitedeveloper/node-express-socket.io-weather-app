@@ -66,8 +66,10 @@ block content
           // comments for a specific city
           $('.comment').remove();
 
-          // Grab city name string from input field
-          $cityName = $('#cityName').val();
+          // Grab city name string from input field and
+          // store is as lower case to prevent duplicate
+          // entries i.e. Austin and austin or AUSTIN
+          $cityName = $('#cityName').val().toLowerCase();
           // clear error messages if any
           $('#error').hide();
           // Fade out main display so it can fade back in
