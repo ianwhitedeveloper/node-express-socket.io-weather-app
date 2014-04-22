@@ -9,10 +9,10 @@
 //     e.preventDefault();
 //     console.log('Fetching weather...');
 
-//     // clear error messages if any
-//     $('#error').hide();
-//     // Fade out main display so it can fade back in
-//     $('.container.main').fadeOut(200);
+    // // clear error messages if any
+    // $('#error').hide();
+    // // Fade out main display so it can fade back in
+    // $('.container.main').fadeOut(200);
 
 //     // Grab name of city from input field
 //     var cityName = $('#cityName').val();
