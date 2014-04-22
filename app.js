@@ -4,8 +4,8 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , http = require('http');
-  , mongoose = require('mogoose');
+  , http = require('http')
+  , mongoose = require('mongoose');
 
 var app = express();
 var server = app.listen(3000);
