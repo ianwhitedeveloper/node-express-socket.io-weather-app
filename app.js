@@ -41,5 +41,7 @@ console.log("Express server listening on port 3000");
 
 io.sockets.on('connection', function (socket) {
     console.log('A new user connected!');
-    socket.emit('info', { msg: 'The world is round, there is no up or down.' });
+    socket.on('send city name', function(data) {
+      socket.emit('new city', console.log(data));
+    });
 });
