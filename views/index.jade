@@ -79,7 +79,7 @@ block content
               if (data.cod === 200) {
                 console.log(data.cod);
 
-                // send city name to db
+                // store city name in array
                 socket.emit('send city name', $cityName, function(data) {
                   if (data) {
                     // show comments for this city
