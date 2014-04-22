@@ -34,6 +34,14 @@ app.configure('development', function(){
   });
 });
 
+var commentSchema = mongoose.Schema({
+  cityname: String,
+  comment: String,
+  created: { type: Date, default: Date.now }
+});
+
+var Comment = mongoose.model('Comment', commentSchema);
+
 app.get('/', routes.index);
 
 
@@ -41,11 +49,23 @@ console.log("Express server listening on port 3000");
 
 io.sockets.on('connection', function (socket) {
     console.log('A new user connected!');
-    socket.on('send city name', function(data) {
-      io.sockets.emit('new city', data);
-    });
+
+    // socket.on('send city name', function(data) {
+    //   io.sockets.emit('new city', data);
+    // });
+
+    // socket.on('send city name', function(data, callback) {
+    //   if (cities.indexOf(data) != -1) {
+    //     callback(false);
+    //   } else {
+    //     callback(true);
+    //     socket.city = data;
+    //     io.sockets.emit('cities', cities)
+    //   }
+    // });
 
     socket.on('create comment', function(data) {
-    io.sockets.emit('new comment', data);
-  });
+      var saveComment = new Comment({ name: "Austin", comment: data });
+      io.sockets.emit('new comment', data);
+    });
 });

@@ -61,13 +61,12 @@ block content
         $weatherButton.on('click', function(e) {
           e.preventDefault;
           console.log('Fetching weather...');
-
           // Grab city name string from input field
           $cityName = $('#cityName').val();
           // clear error messages if any
-        $('#error').hide();
-        // Fade out main display so it can fade back in
-        $('.container.main').fadeOut(200);
+          $('#error').hide();
+          // Fade out main display so it can fade back in
+          $('.container.main').fadeOut(200);
 
           $.ajax({
             url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + "&mode=json&units=imperial",
@@ -79,6 +78,17 @@ block content
               // input is valid
               if (data.cod === 200) {
                 console.log(data.cod);
+
+                // send city name to db
+                socket.emit('send city name', $cityName, function(data) {
+                  if (data) {
+                    // show comments for this city
+                  } else {
+                    // gather weather info for city and display
+                    // as well as allow new comments to be added
+                  }
+                });
+
                 $('#cityNameBanner').text($cityName + " Weather");
                 $('.container.main').fadeIn(200);
                 // Update named fields with API weather data for specific city
@@ -129,7 +139,6 @@ block content
               $('#error').fadeIn(200).html("There was an error, please try again later");
             }
           });
-           socket.emit('send city name', { name: $cityName });
          });
 
         $commentForm.submit(function(e) {
@@ -139,6 +148,7 @@ block content
         });
 
         socket.on('new comment', function(data) {
+          $cityName = $('#city-name').val();
           $commentList.append("<li class='comment'>" + data + "</li>");
         });
       });
