@@ -58,7 +58,7 @@ fieldset {
 }
 
 .container.main {
-  display: none;
+  /*display: none;*/
 }
 #error {
   display: none;
