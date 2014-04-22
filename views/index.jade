@@ -42,9 +42,25 @@ block content
         //-   input#cityName(type='text', placeholder='City name')
         //- p#get-weather
         //-   a.btn.btn-lg.btn-success(href='#', role='button') Get Weather
-script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-script(src='http://learn.themakersquare.com/materials/vendor/jquery.riot.js')
-script(src='http://learn.themakersquare.com/materials/week-7/weather-icons.js')
-script(src='/javascripts/global.js')
-script(src='/javascripts/client.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='http://learn.themakersquare.com/materials/vendor/jquery.riot.js')
+    script(src='http://learn.themakersquare.com/materials/week-7/weather-icons.js')
+    script(src='/javascripts/global.js')
+    script(src='/javascripts/client.js')
+    script.
+      $(function($) {
+        var socket = io.connect();
+
+         var $getWeatherButton = $('#get-weather');
+
+         $getWeatherButton.on('click', function(e) {
+           e.preventDefault;
+           socket.emit('send city name', { name: $('#cityName').val() });
+           $grabCityName.val('');
+         });
+
+         socket.on('new message', function(data) {
+            console.log(data);
+          });
+      });
