@@ -155,7 +155,10 @@ block content
           $commentBox.val('');
         });
         socket.on('load comments for city', function(docs) {
-          $commentList.append("<li class='comment'>" + docs + "</li>");
+          $.each(docs, function ( index, value ) {
+            $commentList.append("<li class='comment'>" + value.comment + "</li>");
+          });
+          //- $commentList.append("<li class='comment'>" + docs + "</li>");
         });
         socket.on('new comment', function(data) {
           $cityName = $('#city-name').val();
