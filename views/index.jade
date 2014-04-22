@@ -151,6 +151,6 @@ block content
 
         socket.on('new comment', function(data) {
           $cityName = $('#city-name').val();
-          $commentList.append("<li class='comment'>" + data + "</li>");
+          $commentList.append("<li class='comment'>" + data.comment + "</li>");
         });
       });

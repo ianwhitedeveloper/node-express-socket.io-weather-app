@@ -66,7 +66,8 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('create comment', function(data) {
-      var saveComment = new Comment({ name: "Austin", comment: data });
+      console.log(data);
+      var saveComment = new Comment({ cityname: socket.city, comment: data });
       io.sockets.emit('new comment', { cityname: socket.city, comment: data });
     });
 });
