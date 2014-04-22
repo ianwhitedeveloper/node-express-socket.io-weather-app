@@ -64,3 +64,9 @@ fieldset {
   display: none;
 }
 
+/*Automatically capitalize city name to prevent multiple entries
+for example Austin or austin*/
+#cityName {
+  text-transform: capitalize;
+}
+
