@@ -87,6 +87,9 @@ block content
                   } else {
                     // gather weather info for city and display
                     // as well as allow new comments to be added
+                    socket.on('load comments for city', function(docs) {
+                      $commentList.append("<li class='comment'>" + docs + "</li>");
+                    });
                     console.log("already there");
                   }
                 });

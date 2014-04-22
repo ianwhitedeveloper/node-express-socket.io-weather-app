@@ -61,6 +61,11 @@ io.sockets.on('connection', function (socket) {
         callback(true);
         socket.city = data;
         cities.push(socket.city)
+        Comment.find({ cityname: socket.city }, function(err, docs) {
+          if (err) throw err;
+          console.log("retrieving city comments");
+          socket.emit('load comments for city', docs);
+        });
         io.sockets.emit('new city', cities);
       }
     });
