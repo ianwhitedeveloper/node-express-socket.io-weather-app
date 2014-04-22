@@ -61,6 +61,11 @@ block content
         $weatherButton.on('click', function(e) {
           e.preventDefault;
           console.log('Fetching weather...');
+
+          // clear comments so they can be re populated by
+          // comments for a specific city
+          $('.comment').remove();
+
           // Grab city name string from input field
           $cityName = $('#cityName').val();
           // clear error messages if any
@@ -81,17 +86,15 @@ block content
 
                 // store city name in array
                 socket.emit('send city name', $cityName, function(data) {
-                  if (data) {
-                    // show comments for this city
-                    console.log('hooray');
-                  } else {
-                    // gather weather info for city and display
-                    // as well as allow new comments to be added
-                    socket.on('load comments for city', function(docs) {
-                      $commentList.append("<li class='comment'>" + docs + "</li>");
-                    });
-                    console.log("already there");
-                  }
+                  //- if (data) {
+                  //-   // show comments for this city
+                  //-   console.log('hooray');
+                  //- } else {
+                  //-   // gather weather info for city and display
+                  //-   // as well as allow new comments to be added
+                  //-   console.log("already there");
+                  //- }
+
                 });
 
                 $('#cityNameBanner').text($cityName + " Weather");
@@ -151,7 +154,9 @@ block content
           socket.emit('create comment', $commentBox.val());
           $commentBox.val('');
         });
-
+        socket.on('load comments for city', function(docs) {
+          $commentList.append("<li class='comment'>" + docs + "</li>");
+        });
         socket.on('new comment', function(data) {
           $cityName = $('#city-name').val();
           $commentList.append("<li class='comment'>" + data.comment + "</li>");

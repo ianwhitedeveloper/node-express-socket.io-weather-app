@@ -55,19 +55,29 @@ io.sockets.on('connection', function (socket) {
     // });
 
     socket.on('send city name', function(data, callback) {
-      if (cities.indexOf(data) != -1) {
-        callback(false);
-      } else {
-        callback(true);
+      // if (cities.indexOf(data) != -1) {
+      //   callback(false);
+      // } else {
+      //   callback(true);
+      //   socket.city = data;
+      //   cities.push(socket.city)
+      //   Comment.find({ cityname: socket.city }, function(err, docs) {
+      //     if (err) throw err;
+      //     console.log("retrieving city comments");
+      //     console.log(docs);
+      //     socket.emit('load comments for city', docs);
+      //   });
+      //   io.sockets.emit('new city', cities);
+      // }
+      callback(true);
         socket.city = data;
         cities.push(socket.city)
         Comment.find({ cityname: socket.city }, function(err, docs) {
           if (err) throw err;
           console.log("retrieving city comments");
+          console.log(docs);
           socket.emit('load comments for city', docs);
         });
-        io.sockets.emit('new city', cities);
-      }
     });
 
     socket.on('create comment', function(data) {
