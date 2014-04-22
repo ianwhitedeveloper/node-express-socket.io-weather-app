@@ -10,7 +10,7 @@ var express = require('express')
 var app = express();
 var server = app.listen(3000);
 var io = require('socket.io').listen(server); // this tells socket.io to use our express server
-
+var cities = [];
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -54,15 +54,16 @@ io.sockets.on('connection', function (socket) {
     //   io.sockets.emit('new city', data);
     // });
 
-    // socket.on('send city name', function(data, callback) {
-    //   if (cities.indexOf(data) != -1) {
-    //     callback(false);
-    //   } else {
-    //     callback(true);
-    //     socket.city = data;
-    //     io.sockets.emit('cities', cities)
-    //   }
-    // });
+    socket.on('send city name', function(data, callback) {
+      if (cities.indexOf(data) != -1) {
+        callback(false);
+      } else {
+        callback(true);
+        socket.city = data;
+        cities.push(socket.city)
+        io.sockets.emit('new city', cities);
+      }
+    });
 
     socket.on('create comment', function(data) {
       var saveComment = new Comment({ name: "Austin", comment: data });
