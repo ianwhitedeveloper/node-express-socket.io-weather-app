@@ -51,12 +51,19 @@ block content
     script.
       $(function($) {
         var socket = io.connect();
+        // Initialize skycons
+        var skycons = new Skycons({"color": "black"});
 
-         var $weatherButton = $('#get-weather');
+        // Sets weather button to variable
+        var $weatherButton = $('#get-weather');
 
         $weatherButton.on('click', function(e) {
           e.preventDefault;
+          console.log('Fetching weather...');
+
+          // Grab city name string from input field
           $cityName = $('#cityName').val();
+
           $.ajax({
             url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + "&mode=json&units=imperial",
             type: "get",
@@ -77,6 +84,32 @@ block content
 
                 // Clear city weather input value
                 $('#cityName').val('');
+
+                // Display weather condition info reported from API JSON
+                var weatherCondition = data.weather[0].main
+                console.log(weatherCondition);
+
+                // Display appropriate Skycon based on current weather.
+                // May not always work--unsure of all
+                // possible weather descriptions at the moment
+                if (weatherCondition.indexOf("Rain") != -1) {
+                  skycons.add("icon1", Skycons.RAIN);
+                } else if (weatherCondition.indexOf("Clear") != -1) {
+                  skycons.add("icon1", Skycons.CLEAR_DAY);
+                } else if (weatherCondition.indexOf("Wind") != -1) {
+                  skycons.add("icon1", Skycons.WIND);
+                } else if (weatherCondition.indexOf("Fog") != -1) {
+                  skycons.add("icon1", Skycons.FOG);
+                } else if (weatherCondition.indexOf("Clouds") != -1) {
+                  skycons.add("icon1", Skycons.CLOUDY);
+                } else if (weatherCondition.indexOf("Snow") != -1) {
+                  skycons.add("icon1", Skycons.SNOW);
+                } else if (weatherCondition.indexOf("Mist") != -1) {
+                  skycons.add("icon1", Skycons.FOG);
+                }
+
+                // Animate Skycons
+                skycons.play();
               }
             }
           });

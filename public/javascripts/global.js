@@ -39,32 +39,32 @@
     //         $('#high').text(data.main.temp_max);
     //         $('#low').text(data.main.temp_min);
 
-    //         // Clear city weather input value
-    //         $('#cityName').val('');
-//             var weatherCondition = data.weather[0].main
-//             console.log(weatherCondition);
+            // // Clear city weather input value
+            // $('#cityName').val('');
+            // var weatherCondition = data.weather[0].main
+            // console.log(weatherCondition);
 
-//             // Display appropriate Skycon based on current weather.
-//             // May not always work--unsure of all
-//             // possible weather descriptions at the moment
-//             if (weatherCondition.indexOf("Rain") != -1) {
-//               skycons.add("icon1", Skycons.RAIN);
-//             } else if (weatherCondition.indexOf("Clear") != -1) {
-//               skycons.add("icon1", Skycons.CLEAR_DAY);
-//             } else if (weatherCondition.indexOf("Wind") != -1) {
-//               skycons.add("icon1", Skycons.WIND);
-//             } else if (weatherCondition.indexOf("Fog") != -1) {
-//               skycons.add("icon1", Skycons.FOG);
-//             } else if (weatherCondition.indexOf("Clouds") != -1) {
-//               skycons.add("icon1", Skycons.CLOUDY);
-//             } else if (weatherCondition.indexOf("Snow") != -1) {
-//               skycons.add("icon1", Skycons.SNOW);
-//             } else if (weatherCondition.indexOf("Mist") != -1) {
-//               skycons.add("icon1", Skycons.FOG);
-//             }
+            // // Display appropriate Skycon based on current weather.
+            // // May not always work--unsure of all
+            // // possible weather descriptions at the moment
+            // if (weatherCondition.indexOf("Rain") != -1) {
+            //   skycons.add("icon1", Skycons.RAIN);
+            // } else if (weatherCondition.indexOf("Clear") != -1) {
+            //   skycons.add("icon1", Skycons.CLEAR_DAY);
+            // } else if (weatherCondition.indexOf("Wind") != -1) {
+            //   skycons.add("icon1", Skycons.WIND);
+            // } else if (weatherCondition.indexOf("Fog") != -1) {
+            //   skycons.add("icon1", Skycons.FOG);
+            // } else if (weatherCondition.indexOf("Clouds") != -1) {
+            //   skycons.add("icon1", Skycons.CLOUDY);
+            // } else if (weatherCondition.indexOf("Snow") != -1) {
+            //   skycons.add("icon1", Skycons.SNOW);
+            // } else if (weatherCondition.indexOf("Mist") != -1) {
+            //   skycons.add("icon1", Skycons.FOG);
+            // }
 
-//             // Animate Skycons
-//             skycons.play();
+            // // Animate Skycons
+            // skycons.play();
 //           } else {
 //             // Return what was typed into city name input
 //             console.log("Sorry, please enter a city");
