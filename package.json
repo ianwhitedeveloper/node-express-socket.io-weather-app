@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "node-socket.io-weather-app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,5 +10,15 @@
     "jade": "*",
     "socket.io": "latest",
     "mongoose": "^3.8.8"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-cssmin":         "*",
+    "grunt-contrib-sass":           "*",
+    "grunt-contrib-uglify":         "*",
+    "grunt-contrib-watch":          "*",
+    "grunt-contrib-jshint":         "*",
+    "grunt-contrib-qunit":          "*",
+    "grunt-contrib-concat":         "*"
   }
 }
