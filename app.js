@@ -5,11 +5,23 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , mongoose = require('mongoose');
+  , app = express()
+  , mongoose = require('mongoose')
+  , port = process.env.PORT || 3000;
 
-var app = express();
-var server = app.listen(3000);
-var io = require('socket.io').listen(server); // this tells socket.io to use our express server
+
+  var server = http.createServer(app);
+  server.listen(port);
+  console.log('http server listening on %d', port);
+
+  var io = require('socket.io').listen(server); // this tells socket.io to use our express server
+// var app = express();
+// var server = app.listen(3000);
+
+  var uristring =
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/weather';
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -24,7 +36,18 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  mongoose.connect('mongodb://localhost/weather', function(err) {
+  mongoose.connect(uristring, function(err) {
+    if(err){
+      console.log(err);
+    } else {
+      console.log('Connected to mongodb!');
+    }
+  });
+});
+
+app.configure('production', function(){
+  app.use(express.errorHandler());
+  mongoose.connect(uristring, function(err) {
     if(err){
       console.log(err);
     } else {
@@ -58,7 +81,6 @@ var Comment = mongoose.model('Comment', commentSchema);
 //=======================================================================//
 //                        Socket.io stuff                                //
 //=======================================================================//
-console.log("Express server listening on port 3000");
 
 io.sockets.on('connection', function (socket) {
     console.log('A new user connected!');
