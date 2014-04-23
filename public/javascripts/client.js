@@ -41,7 +41,6 @@ $(function($) {
       type: "get",
       dataType: "json",
       success: function (data) {
-        console.log(data.cod);
 //=======================================================================//
 //          Only show results if what is typed in city name              //
 //           input is valid                                              //
