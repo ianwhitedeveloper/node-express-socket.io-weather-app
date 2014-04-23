@@ -1,7 +1,7 @@
 body {
   padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: blue url("../images/sky.JPG") no-repeat fixed center;
+  background: blue url("../images/sky.JPG") repeat fixed center;
 }
 
 #comment-form {
