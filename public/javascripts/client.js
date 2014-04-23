@@ -10,7 +10,6 @@ $(function($) {
   var $weatherButton = $('#get-weather');
 
   // Initialize skycons
-  var skycons = new Skycons({"color": "black"});
 //=======================================================================//
 //                Click event for Get Weather button                     //
 //=======================================================================//
@@ -19,6 +18,7 @@ $(function($) {
     e.preventDefault;
     console.log('Fetching weather...');
 
+    var skycons = new Skycons({"color": "black"});
     // clear comments so they can be re populated by
     // comments for a specific city
     $('.comment').remove();
