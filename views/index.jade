@@ -9,7 +9,7 @@ block content
   .container.main
     .jumbotron
       .row
-        .col-md-7
+        .col-md-7.text-center
           h1#cityNameBanner
           canvas#icon1(width='128', height='128')
           .weather-forecast
@@ -26,13 +26,13 @@ block content
                 dd#high
                 dt Low:
                 dd#low
-        .col-md-5
-          h2 Comments
+        .col-md-5#comments-section
+          h2.text-center Comments
           form#comment-form
             ul#comment-list
               li.comment A comment
             input.form-control#comment-box(rows="2")
-            button.btn.btn-primary(type="submit") Post
+            button.btn.btn-primary.btn-block(type="submit") Post
   .container
         //- fieldset
         //-   input#cityName(type='text', placeholder='City name')
