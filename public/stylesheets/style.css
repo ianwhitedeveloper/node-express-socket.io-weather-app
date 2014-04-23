@@ -2,6 +2,7 @@ body {
   padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: blue url("../images/sky.JPG") no-repeat fixed center;
+  max-width: 980px;
 }
 
 h2 {
@@ -48,7 +49,7 @@ for example Austin or austin*/
 }
 
 .welcome {
-  height: 500px;
+  height: 80%;
   background: #2ab0ed; /* Old browsers */
   background: -moz-linear-gradient(45deg,  #2ab0ed 0%, #9fd8ef 43%, #bfe8f9 73%, #e4f5fc 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#2ab0ed), color-stop(43%,#9fd8ef), color-stop(73%,#bfe8f9), color-stop(100%,#e4f5fc)); /* Chrome,Safari4+ */
@@ -62,4 +63,9 @@ for example Austin or austin*/
 }
 
 .welcome-message {
+  font-size: 8vw;
+  font-family: 'Indie Flower', 'cursive';
+  padding: 1em 0 1em 0;
+  text-shadow: 2px 2px 2px #2E8AE6;
+  color: #19355E;
 }
