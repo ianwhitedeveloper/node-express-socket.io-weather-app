@@ -9,6 +9,7 @@ body {
   background: -ms-linear-gradient(-45deg,  #e4f5fc 0%,#bfe8f9 15%,#bfe8f9 16%,#9fd8ef 67%,#2ab0ed 100%); /* IE10+ */
   background: linear-gradient(135deg,  #e4f5fc 0%,#bfe8f9 15%,#bfe8f9 16%,#9fd8ef 67%,#2ab0ed 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#2ab0ed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  min-height: 900px;
 }
 
 h2 {
@@ -24,7 +25,7 @@ a {
 }
 
 .container.main {
-  /*display: none;*/
+  display: none;
 }
 
 #error {
@@ -47,4 +48,8 @@ for example Austin or austin*/
   background: linear-gradient(45deg,  #2ab0ed 0%,#9fd8ef 43%,#bfe8f9 73%,#e4f5fc 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ab0ed', endColorstr='#e4f5fc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
-
+#comment-form {
+  min-height: 400px;
+  max-height: 400px;
+  overflow: auto;
+}
