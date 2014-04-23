@@ -18,7 +18,6 @@
     "grunt-contrib-uglify":         "*",
     "grunt-contrib-watch":          "*",
     "grunt-contrib-jshint":         "*",
-    "grunt-contrib-qunit":          "*",
     "grunt-contrib-concat":         "*"
   }
 }
