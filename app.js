@@ -15,8 +15,6 @@ var express = require('express')
   console.log('http server listening on %d', port);
 
   var io = require('socket.io').listen(server); // this tells socket.io to use our express server
-// var app = express();
-// var server = app.listen(3000);
 
   var uristring =
   process.env.MONGOLAB_URI ||
