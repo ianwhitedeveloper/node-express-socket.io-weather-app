@@ -1,14 +1,19 @@
 $(function($) {
+
+  // needed for socket.io functionality
   var socket = io.connect();
 
+
+  // assign dom elements to variables hopefully DRY things up
   var $commentBox = $('#comment-box');
   var $commentList = $('#comment-list');
+  var $weatherButton = $('#get-weather');
 
   // Initialize skycons
   var skycons = new Skycons({"color": "black"});
-
-  // Sets weather button to variable
-  var $weatherButton = $('#get-weather');
+//=======================================================================//
+//                Click event for Get Weather button                     //
+//=======================================================================//
 
   $weatherButton.on('click', function(e) {
     e.preventDefault;
@@ -27,14 +32,21 @@ $(function($) {
     // Fade out main display so it can fade back in
     $('.container.main').fadeOut(200);
 
+//=======================================================================//
+//                Ajax call for Weather Info                             //
+//=======================================================================//
+
     $.ajax({
       url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + "&mode=json&units=imperial",
       type: "get",
       dataType: "json",
       success: function (data) {
         console.log(data.cod);
-        // Only show results if what is typed in city name
-        // input is valid
+//=======================================================================//
+//          Only show results if what is typed in city name              //
+//           input is valid                                              //
+//=======================================================================//
+
         if (data.cod === 200) {
           console.log(data.cod);
 
@@ -89,6 +101,7 @@ $(function($) {
 
           // Animate Skycons
           skycons.play();
+
         } else {
           // Return what was typed into city name input if gibberish
           console.log("Sorry, please enter a city");
@@ -106,13 +119,16 @@ $(function($) {
     });
    });
 
-  // when Post button is clicked for submitting a new comment
+//=======================================================================//
+//                  Socket.io click functions for when Post              //
+//                  button is clicked for submitting a new comment       //
+//=======================================================================//
+
   $('#submit-comment').on('click', function(e) {
     e.preventDefault;
     // grab text in comment box, emit create comment event,
-    // then clear for next comment
-    console.log("hi");
     socket.emit('create comment', $commentBox.val());
+    // then clear for next comment
     $commentBox.val('');
   });
 
@@ -122,6 +138,7 @@ $(function($) {
   });
 
   socket.on('load comments for city', function(docs) {
+    // iterate through docs object and append comment value to dom
     $.each(docs, function ( index, value ) {
       $commentList.append("<li class='comment'>" + value.comment + "</li>");
     });
