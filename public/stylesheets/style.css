@@ -30,6 +30,12 @@ body {
   text-transform: capitalize;
 }
 
+.form-control.input-lg, .btn.btn-lg.btn-success.btn-block{
+  height: 8vw;
+  font-size: 4vw;
+  text-align: center;
+}
+
 /*gradient for weather info pane*/
 .jumbotron {
   background: #2ab0ed; /* Old browsers */
@@ -62,7 +68,7 @@ body {
 .welcome-message {
   font-size: 8vw;
   font-family: 'Indie Flower', 'cursive';
-  padding: 1em 0 1em 0;
+  padding: 2vw 0 2vw 0;
   text-shadow: 2px 2px 2px #2E8AE6;
   color: #19355E;
 }
