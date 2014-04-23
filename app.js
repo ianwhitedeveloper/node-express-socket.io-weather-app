@@ -10,7 +10,6 @@ var express = require('express')
 var app = express();
 var server = app.listen(3000);
 var io = require('socket.io').listen(server); // this tells socket.io to use our express server
-var cities = [];
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -34,17 +33,31 @@ app.configure('development', function(){
   });
 });
 
+app.get('/', routes.index);
+
+//=======================================================================//
+//                      mongoose schema and model info                   //
+//=======================================================================//
+
+
+// mongoose Schema for comments
 var commentSchema = mongoose.Schema({
   cityname: String,
   comment: String,
   created: { type: Date, default: Date.now }
 });
 
+
+// mongoose model for comment
 var Comment = mongoose.model('Comment', commentSchema);
 
-app.get('/', routes.index);
+//=======================================================================//
+//                        End mongoose schema and model info             //
+//=======================================================================//
 
-
+//=======================================================================//
+//                        Socket.io stuff                                //
+//=======================================================================//
 console.log("Express server listening on port 3000");
 
 io.sockets.on('connection', function (socket) {
@@ -52,18 +65,26 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('send city name', function(data, callback) {
       callback(true);
+
+        // data (city name) passed to server from client
+        // and store it in socket session variable for ease
+        // of reuse
         socket.city = data;
-        cities.push(socket.city)
+
+        // find and return comments from Mongodb only for specified city
         Comment.find({ cityname: socket.city }, function(err, docs) {
           if (err) throw err;
           console.log("retrieving city comments");
           console.log(docs);
+
+          // pass docs (comment objects) to client to be rendered on dom
           socket.emit('load comments for city', docs);
         });
     });
 
     socket.on('create comment', function(data) {
       var saveComment = new Comment({ cityname: socket.city, comment: data });
+      // save comment to db with error logging
       saveComment.save(function(err) {
         if (err) throw err;
         io.sockets.emit('new comment', { cityname: socket.city, comment: data });
