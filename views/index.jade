@@ -99,7 +99,10 @@ block content
 
                 });
 
-                $('#cityNameBanner').text($cityName + " Weather");
+                // little trick I found to capitalize lower case city name variable
+                $('#cityNameBanner').text($cityName.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                      return letter.toUpperCase();
+                  }) + " Weather");
                 $('.container.main').fadeIn(200);
                 // Update named fields with API weather data for specific city
                 $('#humidity').text(data.main.humidity + "%");
