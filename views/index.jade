@@ -88,22 +88,16 @@ block content
 
                 // store city name in array
                 socket.emit('send city name', $cityName, function(data) {
-                  //- if (data) {
-                  //-   // show comments for this city
-                  //-   console.log('hooray');
-                  //- } else {
-                  //-   // gather weather info for city and display
-                  //-   // as well as allow new comments to be added
-                  //-   console.log("already there");
-                  //- }
-
                 });
 
                 // little trick I found to capitalize lower case city name variable
                 $('#cityNameBanner').text($cityName.toLowerCase().replace(/\b[a-z]/g, function(letter) {
                       return letter.toUpperCase();
                   }) + " Weather");
+
+                // fade in main container with weather data
                 $('.container.main').fadeIn(200);
+
                 // Update named fields with API weather data for specific city
                 $('#humidity').text(data.main.humidity + "%");
                 $('#pressure').text(data.main.pressure);
@@ -136,13 +130,16 @@ block content
                 } else if (weatherCondition.indexOf("Mist") != -1) {
                   skycons.add("icon1", Skycons.FOG);
                 }
+                // feel free to add more or refactor...
 
                 // Animate Skycons
                 skycons.play();
               } else {
-                // Return what was typed into city name input
+                // Return what was typed into city name input if gibberish
                 console.log("Sorry, please enter a city");
+                // display any errors in a bootstrap styled error flash
                 $('#error').fadeIn(200).html("Sorry, " + $cityName + " is either not a city or is spelled incorrectly.");
+                // clear city name input field
                 $('#cityName').val('');
               }
             },
@@ -154,19 +151,23 @@ block content
           });
          });
 
+        // when Post button is clicked for submitting a new comment
         $commentForm.submit(function(e) {
           e.preventDefault;
+          // grab text in comment box, emit create comment event,
+          // then clear for next comment
           socket.emit('create comment', $commentBox.val());
           $commentBox.val('');
         });
+
+        socket.on('new comment', function(data) {
+          $cityName = $('#city-name').val();
+          $commentList.append("<li class='comment'>" + data.comment + "</li>");
+        });
+
         socket.on('load comments for city', function(docs) {
           $.each(docs, function ( index, value ) {
             $commentList.append("<li class='comment'>" + value.comment + "</li>");
           });
-          //- $commentList.append("<li class='comment'>" + docs + "</li>");
-        });
-        socket.on('new comment', function(data) {
-          $cityName = $('#city-name').val();
-          $commentList.append("<li class='comment'>" + data.comment + "</li>");
         });
       });
