@@ -2,12 +2,10 @@ body {
   padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: blue url("../images/sky.JPG") no-repeat fixed center;
-  max-width: 980px;
 }
 
 #comment-form {
-  min-height: 400px;
-  max-height: 400px;
+  height: 400px;
   overflow: auto;
 }
 
