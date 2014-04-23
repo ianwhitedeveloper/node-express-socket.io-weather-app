@@ -38,7 +38,7 @@ block content
           form#comment-form
             ul#comment-list
           input.form-control.text-center#comment-box(type='text', placeholder='Enter a Comment')
-          button.btn.btn-primary.btn-block(type="submit") Post
+          button.btn.btn-primary.btn-block#submit-comment(type="submit") Post
   .container
         //- fieldset
         //-   input#cityName(type='text', placeholder='City name')
@@ -54,7 +54,6 @@ block content
       $(function($) {
         var socket = io.connect();
 
-        var $commentForm = $('#comment-form');
         var $commentBox = $('#comment-box');
         var $commentList = $('#comment-list');
 
@@ -161,10 +160,11 @@ block content
          });
 
         // when Post button is clicked for submitting a new comment
-        $commentForm.submit(function(e) {
+        $('#submit-comment').on('click', function(e) {
           e.preventDefault;
           // grab text in comment box, emit create comment event,
           // then clear for next comment
+          console.log("hi");
           socket.emit('create comment', $commentBox.val());
           $commentBox.val('');
         });
