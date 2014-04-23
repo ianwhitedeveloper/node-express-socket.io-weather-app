@@ -1,6 +1,14 @@
 body {
   padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #e4f5fc; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #e4f5fc 0%, #bfe8f9 15%, #bfe8f9 16%, #9fd8ef 67%, #2ab0ed 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#e4f5fc), color-stop(15%,#bfe8f9), color-stop(16%,#bfe8f9), color-stop(67%,#9fd8ef), color-stop(100%,#2ab0ed)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg,  #e4f5fc 0%,#bfe8f9 15%,#bfe8f9 16%,#9fd8ef 67%,#2ab0ed 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg,  #e4f5fc 0%,#bfe8f9 15%,#bfe8f9 16%,#9fd8ef 67%,#2ab0ed 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg,  #e4f5fc 0%,#bfe8f9 15%,#bfe8f9 16%,#9fd8ef 67%,#2ab0ed 100%); /* IE10+ */
+  background: linear-gradient(135deg,  #e4f5fc 0%,#bfe8f9 15%,#bfe8f9 16%,#9fd8ef 67%,#2ab0ed 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#2ab0ed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 h2 {
@@ -27,5 +35,16 @@ a {
 for example Austin or austin*/
 #cityName {
   text-transform: capitalize;
+}
+
+.jumbotron {
+  background: #2ab0ed; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #2ab0ed 0%, #9fd8ef 43%, #bfe8f9 73%, #e4f5fc 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#2ab0ed), color-stop(43%,#9fd8ef), color-stop(73%,#bfe8f9), color-stop(100%,#e4f5fc)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg,  #2ab0ed 0%,#9fd8ef 43%,#bfe8f9 73%,#e4f5fc 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg,  #2ab0ed 0%,#9fd8ef 43%,#bfe8f9 73%,#e4f5fc 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg,  #2ab0ed 0%,#9fd8ef 43%,#bfe8f9 73%,#e4f5fc 100%); /* IE10+ */
+  background: linear-gradient(45deg,  #2ab0ed 0%,#9fd8ef 43%,#bfe8f9 73%,#e4f5fc 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ab0ed', endColorstr='#e4f5fc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
