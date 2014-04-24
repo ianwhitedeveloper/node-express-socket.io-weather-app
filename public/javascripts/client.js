@@ -33,7 +33,7 @@ $(function($) {
     $cityName = $('#cityName').val().toLowerCase();
 
     // clear error messages if any
-    $('#error').hide();
+    $('#error').fadeOut(200);
 
     // Fade out main display so it can fade back in
     $('.container.main').fadeOut(200);
@@ -141,10 +141,18 @@ $(function($) {
     e.preventDefault;
     // remove last comment city update
     $('.comment-update').remove();
-    // grab text in comment box, emit create comment event sent to server (app.js),
-    socket.emit('create comment', $commentBox.val());
-    // then clear for next comment
-    $commentBox.val('');
+
+    $('#error').fadeOut(100);
+
+    // disallow empty comments from being posted
+    if ($('#comment-box').val() === "") {
+      $('#error').fadeIn(200).html("Please enter a comment.");
+    } else {
+      // grab text in comment box, emit create comment event sent to server (app.js),
+      socket.emit('create comment', $commentBox.val());
+      // then clear for next comment
+      $commentBox.val('');
+    }
   });
 
   socket.on('new comment', function(data) {
