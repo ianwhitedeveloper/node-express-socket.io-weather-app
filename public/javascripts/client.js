@@ -65,11 +65,12 @@ $(function($) {
           $('.container.main').fadeIn(200);
 
           // Update named fields with API weather data for specific city
-          $('#humidity').text(data.main.humidity + "%");
-          $('#pressure').text(data.main.pressure);
-          $('#temperature').text(data.main.temp);
-          $('#high').text(data.main.temp_max);
-          $('#low').text(data.main.temp_min);
+          $('#humidity').text(data.main.humidity + " %");
+          $('#pressure').text(data.main.pressure + " hPa");
+          $('#wind-speed').text(data.wind.speed + " mph");
+          $('#temperature').text(data.main.temp + " °F");
+          $('#high').text(data.main.temp_max + " °F");
+          $('#low').text(data.main.temp_min + " °F");
 
           // Clear city weather input value
           $('#cityName').val('');
