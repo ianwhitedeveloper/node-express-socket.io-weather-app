@@ -4,6 +4,7 @@ body {
   background: blue url("../images/sky.JPG") repeat fixed center;
 }
 
+
 #comment-form {
   height: 400px;
   overflow: auto;
@@ -26,7 +27,7 @@ body {
 }
 
 /*Automatically capitalize city name*/
-#cityName {
+#cityName, #cityNameBanner {
   text-transform: capitalize;
 }
 

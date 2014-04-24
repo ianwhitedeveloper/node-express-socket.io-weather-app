@@ -59,11 +59,8 @@ $(function($) {
           socket.emit('send city name', $cityName, function(data) {
           });
 
-          // little trick I found to capitalize lower case city name variable
-          // to make display nicer :)
-          $('#cityNameBanner').text($cityName.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                return letter.toUpperCase();
-            }) + " Weather");
+          // Update banner with current city name
+          $('#cityNameBanner').text($cityName) + " Weather";
 
           // fade in main container with weather data
           $('.container.main').fadeIn(200);
@@ -139,14 +136,13 @@ $(function($) {
 
   $('#submit-comment').on('click', function(e) {
     e.preventDefault;
-    // grab text in comment box, emit create comment event,
+    // grab text in comment box, emit create comment event sent to server (app.js),
     socket.emit('create comment', $commentBox.val());
     // then clear for next comment
     $commentBox.val('');
   });
 
   socket.on('new comment', function(data) {
-    $cityName = $('#city-name').val();
     $commentList.append("<li class='comment'>" + data.comment + "</li>");
   });
 
