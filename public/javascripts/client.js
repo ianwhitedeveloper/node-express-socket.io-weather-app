@@ -79,29 +79,38 @@ $(function($) {
           // Clear city weather input value
           $('#cityName').val('');
 
-          // Display weather condition info reported from API JSON
+          // Obtain weather status from API Json.
+          // e.g. "Rain", "Snow", etc
           var weatherCondition = data.weather[0].main
           console.log(weatherCondition);
 
           // Display appropriate Skycon based on current weather.
-          // May not always work--unsure of all
-          // possible weather descriptions at the moment
-          if (weatherCondition.indexOf("Rain") != -1) {
-            skycons.add("icon1", Skycons.RAIN);
-          } else if (weatherCondition.indexOf("Clear") != -1) {
-            skycons.add("icon1", Skycons.CLEAR_DAY);
-          } else if (weatherCondition.indexOf("Wind") != -1) {
-            skycons.add("icon1", Skycons.WIND);
-          } else if (weatherCondition.indexOf("Fog") != -1) {
-            skycons.add("icon1", Skycons.FOG);
-          } else if (weatherCondition.indexOf("Clouds") != -1) {
-            skycons.add("icon1", Skycons.CLOUDY);
-          } else if (weatherCondition.indexOf("Snow") != -1) {
-            skycons.add("icon1", Skycons.SNOW);
-          } else if (weatherCondition.indexOf("Mist") != -1) {
-            skycons.add("icon1", Skycons.FOG);
+          switch(weatherCondition)
+          {
+            case "Clouds":
+              skycons.add("icon1", Skycons.CLOUDY)
+              break;
+            case "Clear":
+              skycons.add("icon1", Skycons.CLEAR_DAY)
+              break;
+            case "Rain":
+              skycons.add("icon1", Skycons.RAIN)
+              break;
+            case "Wind":
+              skycons.add("icon1", Skycons.WIND)
+              break;
+            case "Fog":
+              skycons.add("icon1", Skycons.FOG)
+              break;
+            case "Snow":
+              skycons.add("icon1", Skycons.SNOW)
+              break;
+            case "Mist"
+              skycons.add("icon1", Skycons.FOG)
+              break;
+            default:
+              "ø"
           }
-          // feel free to add more or refactor...
 
           // Animate Skycons
           skycons.play();
