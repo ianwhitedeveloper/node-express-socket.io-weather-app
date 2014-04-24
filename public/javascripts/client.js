@@ -9,7 +9,6 @@ $(function($) {
   var $commentList = $('#comment-list');
   var $weatherButton = $('#get-weather');
 
-  // Initialize skycons
 //=======================================================================//
 //                Click event for Get Weather button                     //
 //=======================================================================//
@@ -18,17 +17,21 @@ $(function($) {
     e.preventDefault;
     console.log('Fetching weather...');
 
+    // Initialize skycons
     var skycons = new Skycons({"color": "black"});
-    // clear comments so they can be re populated by
+
+    // clear comments so they can be re populated with
     // comments for a specific city
     $('.comment').remove();
 
     // Grab city name string from input field and
-    // store is as lower case to prevent duplicate
+    // store it as lower case to prevent duplicate
     // entries i.e. Austin and austin or AUSTIN
     $cityName = $('#cityName').val().toLowerCase();
+
     // clear error messages if any
     $('#error').hide();
+
     // Fade out main display so it can fade back in
     $('.container.main').fadeOut(200);
 
@@ -42,7 +45,7 @@ $(function($) {
       dataType: "json",
       success: function (data) {
 //=======================================================================//
-//          Only show results if what is typed in city name              //
+//          Only show results if city name                               //
 //           input is valid                                              //
 //=======================================================================//
 
@@ -57,6 +60,7 @@ $(function($) {
           });
 
           // little trick I found to capitalize lower case city name variable
+          // to make display nicer :)
           $('#cityNameBanner').text($cityName.toLowerCase().replace(/\b[a-z]/g, function(letter) {
                 return letter.toUpperCase();
             }) + " Weather");
