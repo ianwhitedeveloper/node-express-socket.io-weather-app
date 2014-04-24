@@ -17,6 +17,9 @@ $(function($) {
     e.preventDefault;
     console.log('Fetching weather...');
 
+    $('.comment-update').remove();
+
+
     // Initialize skycons
     var skycons = new Skycons({"color": "black"});
 
