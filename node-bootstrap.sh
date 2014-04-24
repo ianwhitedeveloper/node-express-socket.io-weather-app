@@ -39,7 +39,7 @@ npm -g install mongoose
 sudo mkdir -p /data/db
 
 # Victory!
-echo "You're all done! Your default node server should now be listening on http://10.0.33.34/. For code, see: node-mongo-vagrant/www/default/server.js."
+echo "You're all done! "
 
 
 
