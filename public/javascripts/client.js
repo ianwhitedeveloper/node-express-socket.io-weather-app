@@ -105,7 +105,7 @@ $(function($) {
             case "Snow":
               skycons.add("icon1", Skycons.SNOW)
               break;
-            case "Mist"
+            case "Mist":
               skycons.add("icon1", Skycons.FOG)
               break;
             default:
