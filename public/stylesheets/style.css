@@ -31,6 +31,10 @@ body {
   text-transform: capitalize;
 }
 
+#comment-update-city {
+  color: green;
+}
+
 .form-control.input-lg, .btn.btn-lg.btn-success.btn-block{
   height: 8vw;
   font-size: 4vw;

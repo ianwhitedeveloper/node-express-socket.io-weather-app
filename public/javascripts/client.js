@@ -136,6 +136,8 @@ $(function($) {
 
   $('#submit-comment').on('click', function(e) {
     e.preventDefault;
+    // remove last comment city update
+    $('.comment-update').remove();
     // grab text in comment box, emit create comment event sent to server (app.js),
     socket.emit('create comment', $commentBox.val());
     // then clear for next comment
@@ -147,7 +149,9 @@ $(function($) {
     // added to because if the app is being used concurrently, you may see
     // other comments for other cities live in your comment list, but only
     // comments for that specific city are persisted in the DB
-    $commentList.prepend("<li class='comment'>" + data.comment + "</li>" + "<span class='comment-update'>" + "Comment added to city: " + "<span id='comment-update-city'>" + data.cityname + "</span>" + "</span>");
+    $commentList.prepend("<li class='comment'>" + data.comment + "</li>" +
+      "<span class='comment-update'>" + "Comment added for: " +
+      "<span id='comment-update-city'>" + data.cityname + "</span>" + "</span>");
   });
 
   socket.on('load comments for city', function(docs) {
