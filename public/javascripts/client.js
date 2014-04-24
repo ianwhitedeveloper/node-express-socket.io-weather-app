@@ -143,13 +143,19 @@ $(function($) {
   });
 
   socket.on('new comment', function(data) {
-    $commentList.append("<li class='comment'>" + data.comment + "</li>");
+    // prepend comment so it shows up at top of list. Notify which city it was
+    // added to because if the app is being used concurrently, you may see
+    // other comments for other cities live in your comment list, but only
+    // comments for that specific city are persisted in the DB
+    $commentList.prepend("<li class='comment'>" + data.comment + "</li>" + "<span class='comment-update'>" + "Comment added to city: " + "<span id='comment-update-city'>" + data.cityname + "</span>" + "</span>");
   });
 
   socket.on('load comments for city', function(docs) {
-    // iterate through docs object and append comment value to dom
+    // iterate through docs object and prepend comment value to dom
+    // cool note: prepending automatically sorts comments in descending order
+    // starting with most recent!
     $.each(docs, function ( index, value ) {
-      $commentList.append("<li class='comment'>" + value.comment + "</li>");
+      $commentList.prepend("<li class='comment'>" + value.comment + "</li>");
     });
   });
 });
