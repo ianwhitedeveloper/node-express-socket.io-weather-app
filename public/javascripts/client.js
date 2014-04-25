@@ -31,6 +31,7 @@ $(function($) {
     // store it as lower case to prevent duplicate
     // entries i.e. Austin and austin or AUSTIN
     $cityName = $('#cityName').val().toLowerCase();
+    $state = $('#state').val().toLowerCase();
 
     // clear error messages if any
     $('#error').fadeOut(200);
@@ -43,7 +44,7 @@ $(function($) {
 //=======================================================================//
 
     $.ajax({
-      url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + "&mode=json&units=imperial",
+      url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial",
       type: "get",
       dataType: "json",
       success: function (data) {
@@ -59,11 +60,11 @@ $(function($) {
           $('.welcome').fadeOut(100);
 
           // store city name in array
-          socket.emit('send city name', $cityName, function(data) {
+          socket.emit('send city name', $cityName + ", " + $state, function(data) {
           });
 
           // Update banner with current city name
-          $('#cityNameBanner').text($cityName) + " Weather";
+          $('#cityNameBanner').text($cityName + ", " + $state) + " Weather";
 
           // fade in main container with weather data
           $('.container.main').fadeIn(200);
@@ -78,6 +79,7 @@ $(function($) {
 
           // Clear city weather input value
           $('#cityName').val('');
+          $('#state').val('');
 
           // Obtain weather status from API Json.
           // e.g. "Rain", "Snow", etc
@@ -119,9 +121,10 @@ $(function($) {
           // Return what was typed into city name input if gibberish
           console.log("Sorry, please enter a city");
           // display any errors in a bootstrap styled error flash
-          $('#error').fadeIn(200).html("Sorry, " + $cityName + " is either not a city or is spelled incorrectly.");
+          $('#error').fadeIn(200).html("Sorry, " + $cityName + ", " + $state + " is not valid.");
           // clear city name input field
           $('#cityName').val('');
+          $('#state').val('');
         }
       },
       error: function(xhr, status) {

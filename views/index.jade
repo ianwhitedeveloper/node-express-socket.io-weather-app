@@ -1,7 +1,11 @@
 extends layout
 block content
   .container.wrapper
-    input#cityName.form-control.input-lg.text-center(type='text', placeholder='City name')
+    .row
+      .col-md-10
+        input#cityName.form-control.input-lg.text-center(type='text', placeholder='City name')
+      .col-md-2
+        input#state.form-control.input-lg.text-center(type='text', placeholder='State')
     br
     p#get-weather
       a.btn.btn-lg.btn-success.btn-block(href='#', role='button') Get Weather Info
