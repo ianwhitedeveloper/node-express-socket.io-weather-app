@@ -17,6 +17,7 @@ $(function($) {
     e.preventDefault;
     console.log('Fetching weather...');
 
+    // remove lingering comments to prevent being rendered twice
     $('.comment-update').remove();
 
 
@@ -77,7 +78,7 @@ $(function($) {
           $('#high').text(data.main.temp_max + " °F");
           $('#low').text(data.main.temp_min + " °F");
 
-          // Clear city weather input value
+          // Clear city/state input value
           $('#cityName').val('');
           $('#state').val('');
 
