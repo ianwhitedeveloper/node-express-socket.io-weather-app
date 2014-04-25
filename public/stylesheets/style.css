@@ -27,7 +27,7 @@ body {
 }
 
 /*Automatically capitalize city name*/
-#cityName, #city-name-banner, #comment-update-city, #state {
+#city-name, #city-name-banner, #comment-update-city, #state {
   text-transform: capitalize;
 }
 

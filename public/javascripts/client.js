@@ -30,7 +30,7 @@ $(function($) {
     // Grab city name string from input field and
     // store it as lower case to prevent duplicate
     // entries i.e. Austin and austin or AUSTIN
-    $cityName = $('#cityName').val().toLowerCase();
+    $cityName = $('#city-name').val().toLowerCase();
     $state = $('#state').val().toLowerCase();
 
     // clear error messages if any
@@ -79,7 +79,7 @@ $(function($) {
             $('#low').text(data.main.temp_min + " °F");
 
             // Clear city/state input value
-            $('#cityName').val('');
+            $('#city-name').val('');
             $('#state').val('');
 
             // Obtain weather status from API Json.
@@ -124,7 +124,7 @@ $(function($) {
             // display any errors in a bootstrap styled error flash
             $('#error').fadeIn(200).text("Sorry, " + $cityName + ", " + $state + " is not valid.");
             // clear city name input field
-            $('#cityName').val('');
+            $('#city-name').val('');
             $('#state').val('');
           }
         },
