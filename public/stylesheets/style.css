@@ -2,6 +2,8 @@ body {
   padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: blue url("../images/sky.JPG") no-repeat fixed center;
+  max-height: 100vw;
+  max-width: 100vw;
 }
 
 
