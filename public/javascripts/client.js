@@ -65,7 +65,7 @@ $(function($) {
             });
 
             // Update banner with current city name
-            $('#cityNameBanner').text($cityName + ", " + $state) + " Weather";
+            $('#city-name-banner').text($cityName + ", " + $state) + " Weather";
 
             // fade in main container with weather data
             $('.container.main').fadeIn(200);
