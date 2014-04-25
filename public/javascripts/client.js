@@ -15,7 +15,6 @@ $(function($) {
 
   $weatherButton.on('click', function(e) {
     e.preventDefault;
-    console.log('Fetching weather...');
 
     // remove lingering comment updates to prevent being rendered twice
     $('.comment-update').remove();
@@ -43,97 +42,101 @@ $(function($) {
 //=======================================================================//
 //                Ajax call for Weather Info                             //
 //=======================================================================//
+    if (($cityName) && ($state)) {
+    console.log('Fetching weather...');
+      $.ajax({
+        url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial",
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+  //=======================================================================//
+  //          Only show results if city name                               //
+  //           input is valid                                              //
+  //=======================================================================//
 
-    $.ajax({
-      url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial",
-      type: "get",
-      dataType: "json",
-      success: function (data) {
-//=======================================================================//
-//          Only show results if city name                               //
-//           input is valid                                              //
-//=======================================================================//
+          if (data.cod === 200) {
+            console.log(data.cod);
 
-        if (data.cod === 200) {
-          console.log(data.cod);
+            // fade out welcome pane
+            $('.welcome').fadeOut(100);
 
-          // fade out welcome pane
-          $('.welcome').fadeOut(100);
+            // store city name in array
+            socket.emit('send city name', $cityName + ", " + $state, function(data) {
+            });
 
-          // store city name in array
-          socket.emit('send city name', $cityName + ", " + $state, function(data) {
-          });
+            // Update banner with current city name
+            $('#cityNameBanner').text($cityName + ", " + $state) + " Weather";
 
-          // Update banner with current city name
-          $('#cityNameBanner').text($cityName + ", " + $state) + " Weather";
+            // fade in main container with weather data
+            $('.container.main').fadeIn(200);
 
-          // fade in main container with weather data
-          $('.container.main').fadeIn(200);
+            // Update named fields with API weather data for specific city
+            $('#humidity').text(data.main.humidity + " %");
+            $('#pressure').text(data.main.pressure + " hPa");
+            $('#wind-speed').text(data.wind.speed + " mph");
+            $('#temperature').text(data.main.temp + " °F");
+            $('#high').text(data.main.temp_max + " °F");
+            $('#low').text(data.main.temp_min + " °F");
 
-          // Update named fields with API weather data for specific city
-          $('#humidity').text(data.main.humidity + " %");
-          $('#pressure').text(data.main.pressure + " hPa");
-          $('#wind-speed').text(data.wind.speed + " mph");
-          $('#temperature').text(data.main.temp + " °F");
-          $('#high').text(data.main.temp_max + " °F");
-          $('#low').text(data.main.temp_min + " °F");
+            // Clear city/state input value
+            $('#cityName').val('');
+            $('#state').val('');
 
-          // Clear city/state input value
-          $('#cityName').val('');
-          $('#state').val('');
+            // Obtain weather status from API Json.
+            // e.g. "Rain", "Snow", etc
+            var weatherCondition = data.weather[0].main
+            console.log(weatherCondition);
 
-          // Obtain weather status from API Json.
-          // e.g. "Rain", "Snow", etc
-          var weatherCondition = data.weather[0].main
-          console.log(weatherCondition);
+            // Display appropriate Skycon based on current weather.
+            switch(weatherCondition)
+            {
+              case "Clouds":
+                skycons.add("icon1", Skycons.CLOUDY)
+                break;
+              case "Clear":
+                skycons.add("icon1", Skycons.CLEAR_DAY)
+                break;
+              case "Rain":
+                skycons.add("icon1", Skycons.RAIN)
+                break;
+              case "Wind":
+                skycons.add("icon1", Skycons.WIND)
+                break;
+              case "Fog":
+                skycons.add("icon1", Skycons.FOG)
+                break;
+              case "Snow":
+                skycons.add("icon1", Skycons.SNOW)
+                break;
+              case "Mist":
+                skycons.add("icon1", Skycons.FOG)
+                break;
+              default:
+                "ø"
+            }
 
-          // Display appropriate Skycon based on current weather.
-          switch(weatherCondition)
-          {
-            case "Clouds":
-              skycons.add("icon1", Skycons.CLOUDY)
-              break;
-            case "Clear":
-              skycons.add("icon1", Skycons.CLEAR_DAY)
-              break;
-            case "Rain":
-              skycons.add("icon1", Skycons.RAIN)
-              break;
-            case "Wind":
-              skycons.add("icon1", Skycons.WIND)
-              break;
-            case "Fog":
-              skycons.add("icon1", Skycons.FOG)
-              break;
-            case "Snow":
-              skycons.add("icon1", Skycons.SNOW)
-              break;
-            case "Mist":
-              skycons.add("icon1", Skycons.FOG)
-              break;
-            default:
-              "ø"
+            // Animate Skycons
+            skycons.play();
+
+          } else {
+            // Return what was typed into city name input if gibberish
+            console.log("Sorry, please enter a city");
+            // display any errors in a bootstrap styled error flash
+            $('#error').fadeIn(200).text("Sorry, " + $cityName + ", " + $state + " is not valid.");
+            // clear city name input field
+            $('#cityName').val('');
+            $('#state').val('');
           }
-
-          // Animate Skycons
-          skycons.play();
-
-        } else {
-          // Return what was typed into city name input if gibberish
-          console.log("Sorry, please enter a city");
-          // display any errors in a bootstrap styled error flash
-          $('#error').fadeIn(200).html("Sorry, " + $cityName + ", " + $state + " is not valid.");
-          // clear city name input field
-          $('#cityName').val('');
-          $('#state').val('');
+        },
+        error: function(xhr, status) {
+          // In case there's an error on the API side
+          console.log("There was an error");
+          $('#error').fadeIn(200).text("There was an error, please try again later");
         }
-      },
-      error: function(xhr, status) {
-        // In case there's an error on the API side
-        console.log("There was an error");
-        $('#error').fadeIn(200).html("There was an error, please try again later");
-      }
-    });
+      });
+    } else {
+      $('#error').fadeIn(200).text("Please enter both a City Name and a State");
+    }
    });
 
 //=======================================================================//
@@ -150,7 +153,7 @@ $(function($) {
 
     // disallow empty comments from being posted
     if ($('#comment-box').val() === "") {
-      $('#error').fadeIn(200).html("Please enter a comment.");
+      $('#error').fadeIn(200).text("Please enter a comment.");
     } else {
       // grab text in comment box, emit create comment event sent to server (app.js),
       socket.emit('create comment', $commentBox.val());
