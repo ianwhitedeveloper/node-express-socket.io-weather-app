@@ -17,7 +17,7 @@ $(function($) {
     e.preventDefault;
     console.log('Fetching weather...');
 
-    // remove lingering comments to prevent being rendered twice
+    // remove lingering comment updates to prevent being rendered twice
     $('.comment-update').remove();
 
 
