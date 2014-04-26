@@ -51,7 +51,7 @@ body
   color: green;
 }
 
-.form-control.input-lg, .btn.btn-lg.btn-success.btn-block{
+#city-name, #state, #get-weather {
   height: 8vw;
   font-size: 4vw;
   text-align: center;
