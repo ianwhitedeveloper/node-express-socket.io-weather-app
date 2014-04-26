@@ -40,6 +40,8 @@ body
 
 #error {
   display: none;
+  padding: 25px;
+  border-radius: 5px;
 }
 
 /*Automatically capitalize city name*/
