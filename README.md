@@ -3,7 +3,7 @@ This is a very simple weather app built with node.js, express.js, socket.io and 
 You can find it running on heroku at http://the-weather-app.herokuapp.com/
 
 ## How to use
-If you'd like to play around with this project, feel free to clone it!  Also, if you intend to use Vagrant, simply type vagrant up into your terminal and wait for the files to download.  Next, type vagrant ssh, cd /vagrant and finally npm start.  Mongodb will automatically start up for and you may then visit (http://localhost:5000) to play with the app!
+If you'd like to play around with this project, feel free to clone it!  Also, if you intend to use Vagrant, simply type ```vagrant up``` into your terminal and wait for the files to download.  Next, type ```vagrant ssh```, ```cd /vagrant``` and finally ```npm start```.  Mongodb will automatically start up for and you may then visit ```http://localhost:5000``` to play with the app!
 
 ## Contact
 Feel free to email me at ianwhite@utexas.edu with any questions, comments or bugs.  Thank you!!

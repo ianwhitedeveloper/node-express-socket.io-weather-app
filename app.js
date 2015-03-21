@@ -7,7 +7,7 @@ var express = require('express')
   , http = require('http')
   , app = express()
   , mongoose = require('mongoose')
-  , port = process.env.PORT || 8080;
+  , port = process.env.PORT || 5000;
 
 
   var server = http.createServer(app);

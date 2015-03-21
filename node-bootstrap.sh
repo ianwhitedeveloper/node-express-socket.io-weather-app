@@ -10,8 +10,6 @@ echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | 
 
 # Update and begin installing some utility tools
 apt-get -y update
-apt-get install -y python-software-properties
-apt-get install -y vim git subversion curl
 apt-get install -y memcached build-essential
 
 # Add nodejs repo
