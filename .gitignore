@@ -1,4 +1,17 @@
-.vagrant
-node_modules
 Procfile
 dist
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+node_modules
+
+# Logs and databases #
+######################
+*.log
+
+.vagrant
