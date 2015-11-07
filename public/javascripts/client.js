@@ -3,6 +3,8 @@ $(function($) {
   // needed for socket.io functionality
   var socket = io.connect();
 
+  var API_KEY = 'fea701ddd226796bfb70b7050f7839b8';
+
 
   // assign dom elements to variables hopefully DRY things up
   var $commentBox = $('#comment-box');
@@ -45,7 +47,7 @@ $(function($) {
     if (($cityName) && ($state)) {
     console.log('Fetching weather...');
       $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial",
+        url: "http://api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial" + "&APPID" + API_KEY,
         type: "get",
         dataType: "json",
         success: function (data) {
