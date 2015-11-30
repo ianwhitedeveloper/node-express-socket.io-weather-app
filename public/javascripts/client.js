@@ -47,9 +47,9 @@ $(function($) {
     if (($cityName) && ($state)) {
     console.log('Fetching weather...');
       $.ajax({
-        url: "//api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial" + "&APPID" + API_KEY,
+        url: "//api.openweathermap.org/data/2.5/weather?q=" + $cityName + ", " + $state + "&mode=json&units=imperial" + "&APPID=" + API_KEY,
         type: "get",
-        dataType: "json",
+        dataType: "jsonp",
         success: function (data) {
   //=======================================================================//
   //          Only show results if city name                               //
